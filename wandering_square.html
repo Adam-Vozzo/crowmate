@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wandering Square</title>
+  <style>
+    /* Container */
+    #container {
+      width: 100%;
+      height: 100%;
+      background-color: #E0E0E0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Wandering square */
+    #square {
+      width: 100px;
+      height: 100px;
+      background-color: #C4C4C4;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="square"></div>
+  </div>
+
+  <script>
+    const square = document.getElementById("square");
+    const container = document.getElementById("container");
+
+    function moveSquare() {
+      // Random movement within the container's bounds
+      const maxX = container.clientWidth - square.clientWidth;
+      const maxY = container.clientHeight - square.clientHeight;
+      
+      const newX = Math.random() * maxX;
+      const newY = Math.random() * maxY;
+
+      square.style.transition = "top 0.5s, left 0.5s";
+      square.style.left = `${newX}px`;
+      square.style.top = `${newY}px`;
+    }
+
+    // Move the square every 500ms
+    setInterval(moveSquare, 500);
+  </script>
+</body>
+</html>
